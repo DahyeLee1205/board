@@ -1,6 +1,6 @@
 # Board Project
 
-##Spring boot + JPA 게시판 만들기
+### Spring boot + JPA 게시판 만들기
 
 1. 프로젝트 기간 : 2024년 12월 28일 ~ 2024년 1월 10일
 2. 기술스택 : Spring Boot, JPA, MariaDB, EC2
