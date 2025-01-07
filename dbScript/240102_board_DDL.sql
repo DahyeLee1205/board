@@ -2,7 +2,8 @@
 	`board_no`	BIGINT	NOT NULL,
 	`user_no`	INT	NOT NULL,
 	`board_title`	VARCHAR(256)	NULL,
-	`bord_content`	LONGTEXT	NULL,
+	`board_content`	LONGTEXT	NULL,
+    `modify_date`	DATETIME	NULL,
 	`create_date`	DATETIME	NULL,
 	`del_yn`	TINYINT	NULL
 );
@@ -25,7 +26,7 @@ CREATE TABLE `MEMBER` (
 	`gender`	TINYINT	NULL,
 	`birtthday`	VARCHAR(128)	NULL,
 	`cell_phone`	VARCHAR(128)	NULL,
-	`gen_date`	DATETIME	NULL,
+	`modify_date`	DATETIME	NULL,
 	`modify_date`	DATETIME	NULL,
 	`user_status`	TINYINT	NULL
 );
