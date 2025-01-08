@@ -2,12 +2,14 @@ package com.example.member.entity;
 
 import com.example.common.entity.BaseTime;
 import com.example.common.entity.Status;
+import com.example.member.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -82,5 +84,15 @@ public class Member extends BaseTime {
     public void setGender(Gender gender) {
         this.gen = gender;
         this.gender = gen != null ? gen.getValue() : 0; // null인 경우 기본값 설정
+    }
+
+    public void updateMember(MemberDto memberDto) {
+        Optional.ofNullable(memberDto.getLoginId()).filter(loginId -> !loginId.isEmpty()).ifPresent(value -> this.loginId = value);
+        Optional.ofNullable(memberDto.getPassword()).filter(password -> !password.isEmpty()).ifPresent(value -> this.password = value);
+        Optional.ofNullable(memberDto.getUserName()).filter(userName -> !userName.isEmpty()).ifPresent(value -> this.userName = value);
+        Optional.ofNullable(memberDto.getEmail()).filter(email -> !email.isEmpty()).ifPresent(value -> this.email = value);
+        Optional.ofNullable(memberDto.getBirthday()).filter(birthday -> !birthday.isEmpty()).ifPresent(value -> this.birthday = value);
+        Optional.ofNullable(memberDto.getCellPhone()).filter(cellPhone -> !cellPhone.isEmpty()).ifPresent(value -> this.cellPhone = value);
+        this.setStatus(Status.fromValue(memberDto.getStatus()));
     }
 }
