@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "tb_member")
+@Table(name = "member")
 public class Member extends BaseTime {
 
     @Id
