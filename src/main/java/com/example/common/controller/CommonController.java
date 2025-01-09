@@ -11,6 +11,6 @@ public class CommonController {
 
     @GetMapping("/")
     private String boardView(){
-        return "forward:/WEB-INF/board/boardMain.jsp";
+        return "forward:/WEB-INF/views/main.jsp";
     }
 }

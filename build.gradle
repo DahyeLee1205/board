@@ -21,24 +21,37 @@ configurations {
 
 repositories {
     mavenCentral()
+        maven { url 'https://repo.maven.apache.org/maven2' }  // Maven 공식 저장소
+    maven { url 'https://repository.jboss.org/nexus/content/groups/public/' }  // JBoss 저장소 추가
+
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-/*
-    --implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-*/
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    runtimeOnly  'org.springframework.boot:spring-boot-starter-tomcat'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'    /* Log4JDBC */
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'javax.servlet:jstl:1.2'
+
+    //JSP 추가 시작
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+
+/*    implementation 'org.apache.taglibs:taglibs-standard-impl:1.2.5'
+    implementation 'jakarta.servlet:jakarta.servlet-api'  // Jakarta Servlet API
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2'
+    compileOnly 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0'  // Jakarta JSP API
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1' // Jakarta JSTL Implementation
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'  // Tomcat JSP 지원*/
+
 }
 
 tasks.named('test') {

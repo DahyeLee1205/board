@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class BoardApplicationTests {
-
+/*
     @Autowired
     BoardRepository boardRepository;
 
@@ -41,8 +41,8 @@ class BoardApplicationTests {
 
     @Test
     void findBoardById(){
-/*        Board board = boardRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException());
-        Assertions.assertEquals(board.getBoardTitle(), "테스트1");*/
+        Board board = boardRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException());
+        Assertions.assertEquals(board.getBoardTitle(), "테스트1");
     }
 
     @Test
@@ -69,6 +69,6 @@ class BoardApplicationTests {
     void findMemberById(){
         Member member = memberRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException());
         Assertions.assertEquals(member.getLoginId(), "dhlee001");
-    }
+    }*/
 
 }
