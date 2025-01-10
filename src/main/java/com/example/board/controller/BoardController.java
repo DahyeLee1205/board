@@ -3,14 +3,14 @@ package com.example.board.controller;
 import com.example.board.dto.BoardDto;
 import com.example.board.dto.BoardResponseDto;
 import com.example.board.dto.BoardUpdateDto;
+import com.example.board.entity.Board;
 import com.example.board.service.BoardService;
+import com.example.common.entity.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,9 +25,19 @@ public class BoardController {
         return "main";
     }
 
+    @GetMapping("/getLatestBoardList.do")
+    @ResponseBody
+    public BaseResponse<List<Board>> getLatestBoardList() {
+        return boardService.getLatestBoards();  // 최신 4개 게시글 반환
+    }
+
     @GetMapping("/getBoardList.do")
-    private List<BoardResponseDto.ListDto> getBoardList(){
-        return boardService.findAll();
+    @ResponseBody
+    private BaseResponse<Page<Board>> getBoardList(
+            @RequestParam(defaultValue = "0") int pageNo,
+            @RequestParam(defaultValue = "4") int pageSize
+    ){
+        return boardService.findAll(pageNo, pageSize);
     }
 
     @GetMapping("/crateBoard.do")

@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResponseEntity<String> updateMember(MemberDto memberDto) {
-        // 회원 조회
+        // 회원 정보 업데이트
         List<Member> findMember = memberRepository.findByLoginId(memberDto.getLoginId());
         if (findMember.isEmpty()) {
             return ResponseEntity.ok(null); // Null
@@ -71,7 +71,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResponseEntity<String> deleteMember(MemberDto memberDto) {
-        // 회원 조회
+        // 회원 탈퇴
         List<Member> findMember = memberRepository.findByLoginId(memberDto.getLoginId());
         if (findMember.isEmpty()) {
             return ResponseEntity.ok(null); // Null
