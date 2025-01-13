@@ -55,6 +55,18 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public BaseResponse<Board> getBoardDetail(int boardNo) {
+
+        try{
+            Board board = boardRepository.findByIdAndDelYn(boardNo, 0);
+            return BaseResponse.success(board);
+        }catch(Exception e){
+            logger.error("e = " + e.getMessage());
+            return BaseResponse.error("게시글을 가져오는 데에 실패했습니다.");
+        }
+    }
+
+    @Override
     public ResponseEntity<String> saveBoard(BoardDto boardDto) {
         Board saveParams = Board.builder()
                 .boardTitle(boardDto.getBoardTitle())

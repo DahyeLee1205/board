@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class BoardDto {
+    private int id;
     private String boardTitle;   // 게시판 제목
     private String boardContent; // 게시판 내용
     private String userNo;       // 사용자 번호

@@ -35,9 +35,15 @@ public class BoardController {
     @ResponseBody
     private BaseResponse<Page<Board>> getBoardList(
             @RequestParam(defaultValue = "0") int pageNo,
-            @RequestParam(defaultValue = "4") int pageSize
-    ){
+            @RequestParam(defaultValue = "4") int pageSize){
         return boardService.findAll(pageNo, pageSize);
+    }
+
+    @GetMapping("/getBoardDetail.do")
+    @ResponseBody
+    private BaseResponse<Board> getBoardDetail(
+            @RequestParam int boardNo){
+        return boardService.getBoardDetail(boardNo);
     }
 
     @GetMapping("/crateBoard.do")

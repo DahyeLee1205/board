@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function boardMainFunc(){
     getBoard();
     naviInit();
+    postPreviewBtnEvent();
 }
 
 function naviInit(){
@@ -29,14 +30,20 @@ function getBoard(){
             return response.json();
         })
         .then(responseData => {
+
+            const siteHeading = document.getElementById('site-heading');
+            siteHeading.style.display = '';
+            const postHeading = document.getElementById('post-heading')
+            postHeading.style.display = 'none';
+
             const boardList = responseData.data;
             const boardContainer = document.getElementById('boardList');
             boardList.forEach(board => {
 
                 const postDiv = document.createElement('div');
-                postDiv.id = 'boardLatest'; // id 설정
+                postDiv.className = 'post-preview'; // id 설정
                 postDiv.innerHTML = `
-                        <div class="post-preview">
+                        <!--<div class="post-preview">-->
                         <h3>${board.boardTitle}</h3>
                         <p class="post-meta">
                         <div class="post-num" value="${board.id}">
@@ -80,6 +87,12 @@ function getAllBoard(pageNo, pageSize) {
             return response.json();
         })
         .then(responseData => {
+
+            const siteHeading = document.getElementById('site-heading');
+            siteHeading.style.display = '';
+            const postHeading = document.getElementById('post-heading')
+            postHeading.style.display = 'none';
+
             const boardList = responseData.data.content;
             const boardContainer = document.getElementById('boardList');
             boardContainer.innerHTML = ''; // 기존 게시글 리스트 초기화
@@ -139,6 +152,12 @@ function getBoardPages(pageNo, pageSize){
             return response.json();
         })
         .then(responseData => {
+
+            const siteHeading = document.getElementById('site-heading');
+            siteHeading.style.display = '';
+            const postHeading = document.getElementById('post-heading')
+            postHeading.style.display = 'none';
+
             const boardList = responseData.data.content;
             const boardContainer = document.getElementById('boardList');
             boardContainer.innerHTML = ''; // 기존 게시글 리스트 초기화
@@ -187,6 +206,47 @@ function getBoardPages(pageNo, pageSize){
 
         })
         .catch(error => console.error('Fetch 에러:', error));
+}
+function postPreviewBtnEvent(){
+    document.addEventListener('click', function (e) {
+        const postPreview = e.target.closest('.post-preview');
+        if (postPreview) {
+            const postNum = postPreview.querySelector('.post-num');
+            const postVal = postNum.getAttribute('value');
+            getBoardDetail(postVal);
+        }
+    });
+}
+
+function getBoardDetail(boardNo){
+    fetch(`/board/getBoardDetail.do?boardNo=${boardNo}`)
+        .then(response => {
+            if (!response.ok) throw new Error('네트워크 응답이 실패했습니다.');
+            return response.json();
+        })
+        .then(responseData => {
+
+            // 헤더 숨기기
+            const siteHeading = document.getElementById('site-heading');
+            siteHeading.style.display = 'none';
+            const postHeading = document.getElementById('post-heading')
+            postHeading.style.display = '';
+
+            const boardDetail = responseData.data;
+
+            initGetBoard();
+            const boardContainer = document.getElementById('boardList');
+            /*boardContainer.innerHTML = ''; // 기존 게시글 리스트 초기화*/
+
+            document.getElementById('postTitle').innerHTML = boardDetail.boardTitle;
+            document.getElementById('postUserId').innerHTML = boardDetail.userNo;
+            document.getElementById('postDate').innerHTML = boardDetail.createDate;
+
+            const postDiv = document.createElement('p');
+            postDiv.innerHTML = boardDetail.boardContent;
+            boardContainer.appendChild(postDiv);
+
+        })
 }
 
 

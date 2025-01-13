@@ -35,7 +35,7 @@
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" id="mainPage">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="boardDetail.jsp">Sample Post</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -46,10 +46,21 @@
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
+                    <%-- 게시글 목록 --%>
+                    <div id="site-heading" class="site-heading" style="">
                         <h1>Clean Blog</h1>
                         <span class="subheading">A Blog Theme by Start Bootstrap</span>
                     </div>
+                    <%-- 게시글 상세 --%>
+                    <div id="post-heading" class="post-heading" style="display:none">
+                        <h1 id = postTitle></h1>
+                        <span class="meta">
+                                Posted by
+                                <a href="#!" id="postUserId"></a>
+                                on <p id="postDate"></p>
+                        </span>
+                    </div>
+
                 </div>
             </div>
         </div>

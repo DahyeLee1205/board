@@ -12,4 +12,5 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     List<Board> findTop4ByDelYnOrderByCreateDateDesc(int delYn);
     Page<Board> findByDelYn(int delYn, Pageable pageable);
+    Board findByIdAndDelYn(int id, int delYn);
 }

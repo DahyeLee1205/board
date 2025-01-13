@@ -16,6 +16,8 @@ public interface BoardService {
 
     BaseResponse<Page<Board>> findAll(int pageNo, int pageSize);
 
+    BaseResponse<Board> getBoardDetail(int boardNo);
+
     ResponseEntity<String> saveBoard(BoardDto boardDto);
 
     ResponseEntity<String> updateBoard(BoardUpdateDto boardDto, Long id);
