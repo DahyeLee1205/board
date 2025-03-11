@@ -20,4 +20,6 @@ public interface MemberService {
     // 회원 탈퇴
     ResponseEntity<String> deleteMember(MemberDto memberDto);
 
+    ResponseEntity<String> doLogin(MemberDto memberDto);
+
 }

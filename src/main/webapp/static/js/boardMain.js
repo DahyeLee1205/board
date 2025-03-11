@@ -6,11 +6,31 @@ function boardMainFunc(){
     getBoard();
     naviInit();
     postPreviewBtnEvent();
+    reqLogin();
 }
 
 function naviInit(){
     document.getElementById("mainPage").addEventListener('click', function() {
         getBoard();
+    });
+
+    document.getElementById("loginPage").addEventListener('click', function() {
+        loginPage();
+    });
+
+}
+
+function loginPage(){
+    // boardArea 없앰
+    document.getElementById('boardArea').style.display='none';
+    // 로그인 페이지 띄워주기
+    document.getElementById('LoginArea').style.display='block';
+}
+
+function reqLogin(){
+    document.getElementById("loginBtn").addEventListener('click', function() {
+        // 로그인 하기
+
     });
 }
 

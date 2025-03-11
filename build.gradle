@@ -30,6 +30,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
     runtimeOnly  'org.springframework.boot:spring-boot-starter-tomcat'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'

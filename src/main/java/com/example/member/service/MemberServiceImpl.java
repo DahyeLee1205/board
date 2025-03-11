@@ -6,11 +6,15 @@ import com.example.member.entity.Gender;
 import com.example.member.entity.Member;
 import com.example.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -81,5 +85,22 @@ public class MemberServiceImpl implements MemberService {
         member.updateMember(memberDto);
 
         return ResponseEntity.ok("Member deleted successfilly! \nloginId : " + member.getLoginId());
+    }
+
+    @Override
+    public ResponseEntity<String> doLogin(MemberDto memberDto) {
+        List<Member> members = memberRepository.findByLoginId(memberDto.getLoginId());
+
+        if (members.get(0) != null && members.size() > 0) {
+            Member member = members.get(0);
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+            boolean isLogin = passwordEncoder.matches(memberDto.getPassword(), member.getPassword());
+            if(isLogin){
+                // 로그인 세션 추가
+
+            }
+        }
+        return null;
     }
 }

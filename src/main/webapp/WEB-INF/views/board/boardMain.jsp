@@ -36,7 +36,8 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" id="mainPage">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="boardDetail.jsp">Sample Post</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="loginPage">Login</a></li>
+                    <li class="nav-item" style="display: none;"><a class="nav-link px-lg-3 py-3 py-lg-4" href="">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -72,6 +73,34 @@
             <!-- Pager-->
         </div>
     </div>
+
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center" id = "LoginArea" style="display: none">
+            <div class="col-md-10 col-lg-8 col-xl-7" id="LoginDiv">
+                <h1>Login</h1>
+                <form id="loginForm">
+                    id<input id="loginId" />
+                    pwd<input id="password" />
+                </form>
+                <div id="loginBtn">Sign In</div>
+                <div id="RegBtn">Sign Up</div>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7" id="userRegDiv" style="display: none">
+                <h1>Sign Up</h1>
+                <form>
+                    id<input id="enrollLoginId" />
+                    pwd<input id="enrollPwd" />
+                    confirm Pwd<input id="confirmPwd" />
+                    name<input id="userName" />
+                    name<input id="gender" />
+                    birthDay<input id="birthDay" />
+                    cellPhone<input id="cellPhone" />
+                </form>
+                <div id="userRegBtn">Sign Up</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer-->
     <footer class="border-top">
         <div class="container px-4 px-lg-5">
