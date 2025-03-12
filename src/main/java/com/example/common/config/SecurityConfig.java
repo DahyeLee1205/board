@@ -14,20 +14,30 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-/*        http.csrf().disable().authorizeHttpRequests()  // deprecated 된 authorizeRequests() 대신 사용
-                .requestMatchers("/login", "/register").permitAll()  // 로그인, 회원가입은 누구나 접근 가능
-                .anyRequest().authenticated()  // 나머지 요청은 인증 필요
-                .and()
-                .formLogin()
+        http
+            .csrf(csrf -> csrf.disable())
+             .authorizeHttpRequests(auth -> auth
+                 .requestMatchers("/login", "/register").permitAll()
+                 .anyRequest().authenticated()
+             )  // 그 외 모든 요청은 인증 필요
+            .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/home", true)  // 로그인 성공 후 이동 URL
-                .and()
-                .logout()
+                .defaultSuccessUrl("/main", true)
+                .permitAll()
+            )
+            .logout(logout -> logout
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout=true");  // 로그아웃 성공 후 이동 URL
+                .logoutSuccessUrl("login?logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+            )
+            .sessionManagement(session -> session
+                .sessionFixation().newSession()
+                .maximumSessions(1)
+                .expiredUrl("/login?expired")
+            );
 
-        return http.build();*/
-
+        return http.build();
     }
 
     @Bean
