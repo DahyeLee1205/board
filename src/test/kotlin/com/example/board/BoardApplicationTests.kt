@@ -36,7 +36,7 @@ class BoardApplicationTests @Autowired constructor (private val boardRepository 
 
         @Test
         fun findBoardById(){
-            var board : Board = boardRepository.findById(1L).orElseThrow {EntityNotFoundException()}
+            var board : Board = boardRepository.findById(1L).orElse(null) ?: throw EntityNotFoundException()
             Assertions.assertEquals(board.boardTitle, "테스트1")
             println("id : ${board.id}" + ", title : ${board.boardTitle}, content : ${board.boardContent}")
         }
@@ -67,8 +67,9 @@ class BoardApplicationTests @Autowired constructor (private val boardRepository 
 
          @Test
          fun findMemberById(){
-             var member : Member  = memberRepository.findById(1L).orElseThrow{EntityNotFoundException()}
-             Assertions.assertEquals(member.loginId, "dhlee002");
+             var member : Member  = memberRepository.findById(1L).orElse(null) ?:  throw EntityNotFoundException()
+             Assertions.assertEquals(member.loginId, "dhlee002")
+             println("no : ${member.userNo}, name : ${member.userName}")
          }
 
 }
