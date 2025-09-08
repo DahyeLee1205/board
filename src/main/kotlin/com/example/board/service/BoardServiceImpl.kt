@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-import java.util.List
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +26,9 @@ class BoardServiceImpl(private val boardRepository : BoardRepository) : BoardSer
         private val logger : Logger = LoggerFactory.getLogger(BoardServiceImpl::class.java)
     }
 
-    override fun getLatestBoards() : BaseResponse<List<Board>>{
+    override fun getLatestBoards() : BaseResponse<MutableList<Board>>{
         return try{
-            val boards : List<Board> = boardRepository.findTop4ByDelYnOrderByCreateDateDesc(0) // delYn이 0인 게시글 4개
+            val boards : MutableList<Board> = boardRepository.findTop4ByDelYnOrderByCreateDateDesc(0) // delYn이 0인 게시글 4개
             BaseResponse.success(boards)
         } catch (e :Exception){
             logger.error("e = ${e.message}")
@@ -41,20 +40,20 @@ class BoardServiceImpl(private val boardRepository : BoardRepository) : BoardSer
         return try{
             val pagable : Pageable = PageRequest.of(pageNo, pageSize);
             val boardPage : Page<Board> = boardRepository.findByDelYn(0, pagable);
-            return BaseResponse.success(boardPage)
+            BaseResponse.success(boardPage)
         }catch (e : Exception){
             logger.error("e = ${e.message}")
-            return BaseResponse.error("게시글 목록을 가져오는 데에 실패했습니다.");
+            BaseResponse.error("게시글 목록을 가져오는 데에 실패했습니다.");
         }
     }
 
     override fun getBoardDetail(boardNo : Int) : BaseResponse<Board> {
         return try{
             val board : Board = boardRepository.findByIdAndDelYn(boardNo, 0)
-            return BaseResponse.success(board)
+            BaseResponse.success(board)
         }catch(e : Exception){
             logger.error("e = ${e.message}");
-            return BaseResponse.error("게시글을 가져오는 데에 실패했습니다.");
+            BaseResponse.error("게시글을 가져오는 데에 실패했습니다.");
         }
     }
 

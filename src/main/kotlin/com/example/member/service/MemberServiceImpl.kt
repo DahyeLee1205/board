@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 
-import java.util.List
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -21,7 +19,7 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
 
     override fun joinMember(memberDto : MemberDto ) : ResponseEntity<String>  {
         // 엔티티 조회 (중복 아이디 조회)
-        val findMember : List<Member> = memberRepository.findByLoginId(memberDto.loginId);
+        val findMember : MutableList<Member> = memberRepository.findByLoginId(memberDto.loginId);
 
         if (!findMember.isEmpty()) {
             System.out.println("already enrolled member = " + memberDto.loginId);
@@ -42,10 +40,10 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
         return ResponseEntity.ok("Member saved successfilly! \nloginId : " + member.loginId);
     }
 
-    override fun findMember(memberDto : MemberDto) : ResponseEntity<List<Member>> {
+    override fun findMember(memberDto : MemberDto) : ResponseEntity<MutableList<Member>> {
 
         // 회원 조회
-        var findMember : List<Member> = memberRepository.findByLoginId(memberDto.loginId)
+        var findMember : MutableList<Member> = memberRepository.findByLoginId(memberDto.loginId)
         if (findMember.isEmpty()) {
             return ResponseEntity.ok(null); // Null
         }
@@ -54,7 +52,7 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
 
     override fun updateMember(memberDto : MemberDto) : ResponseEntity<String>  {
         // 회원 정보 업데이트
-        var findMember : List<Member>  = memberRepository.findByLoginId(memberDto.loginId)
+        var findMember : MutableList<Member>  = memberRepository.findByLoginId(memberDto.loginId)
         if (findMember.isEmpty()) {
             return ResponseEntity.ok(null) // Null
         }
@@ -66,7 +64,7 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
 
     override fun deleteMember(memberDto : MemberDto) : ResponseEntity<String>  {
         // 회원 탈퇴
-        var findMember : List<Member>  = memberRepository.findByLoginId(memberDto.loginId);
+        var findMember : MutableList<Member>  = memberRepository.findByLoginId(memberDto.loginId);
         if (findMember.isEmpty()) {
             return ResponseEntity.ok(null); // Null
         }
@@ -78,9 +76,9 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
     }
 
     override fun doLogin(memberDto : MemberDto) : ResponseEntity<String>  {
-        var members : List<Member>  = memberRepository.findByLoginId(memberDto.loginId);
+        var members : MutableList<Member>  = memberRepository.findByLoginId(memberDto.loginId);
 
-        if (members.get(0) != null && members.size > 0) {
+        if (members.size > 0) {
             var member : Member  = members.get(0);
             var passwordEncoder : BCryptPasswordEncoder = BCryptPasswordEncoder()
 

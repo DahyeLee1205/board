@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import java.util.List
 
 @Controller
 @RequestMapping("/member")
@@ -24,7 +23,7 @@ class MemberController (private val memberService : MemberService ) {
     }
 
     @GetMapping("/findMember.do")
-    fun findMember(@RequestBody memberDto : MemberDto) : ResponseEntity<List<Member>> {
+    fun findMember(@RequestBody memberDto : MemberDto) : ResponseEntity<MutableList<Member>> {
         return memberService.findMember(memberDto)
     }
 

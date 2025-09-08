@@ -8,11 +8,10 @@ import com.example.common.entity.BaseResponse
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 
-import java.util.List;
 
 interface BoardService {
 
-    fun getLatestBoards() : BaseResponse<List<Board>>
+    fun getLatestBoards() : BaseResponse<MutableList<Board>>
 
     fun findAll(pageNo : Int, pageSize : Int) : BaseResponse<Page<Board>>
 

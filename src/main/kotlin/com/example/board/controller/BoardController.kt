@@ -9,8 +9,7 @@ import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
-
-import java.util.List
+import kotlin.collections.MutableList
 
 @Controller
 @RequestMapping("/board")
@@ -22,7 +21,7 @@ class BoardController(private val boardService : BoardService) {
 
     @GetMapping("/getLatestBoardList.do")
     @ResponseBody
-    fun getLatestBoardList() : BaseResponse <List<Board>>  {
+    fun getLatestBoardList() : BaseResponse <MutableList<Board>>  {
         return boardService.getLatestBoards();  // 최신 4개 게시글 반환
     }
 

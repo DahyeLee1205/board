@@ -27,7 +27,7 @@ class SecurityConfig {
             }
             .logout {
                 it.logoutUrl("/logout")
-                    .logoutSuccessUrl("login?logout")
+                    .logoutSuccessUrl("/login?logout")
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID")
             }

@@ -50,12 +50,12 @@ class Member protected constructor(
         get() = Status.fromValue(userStatus)
 
     fun updateMember(memberDto: MemberDto) {
-        memberDto.loginId?.takeIf { it.isNotEmpty() }?.let { this.loginId = it }
-        memberDto.password?.takeIf { it.isNotEmpty() }?.let { this.password = it }
-        memberDto.userName?.takeIf { it.isNotEmpty() }?.let { this.userName = it }
-        memberDto.email?.takeIf { it.isNotEmpty() }?.let { this.email = it }
-        memberDto.birthday?.takeIf { it.isNotEmpty() }?.let { this.birthday = it }
-        memberDto.cellPhone?.takeIf { it.isNotEmpty() }?.let { this.cellPhone = it }
+        memberDto.loginId = this.loginId
+        memberDto.password = this.password
+        memberDto.userName = this.userName
+        memberDto.email = this.email
+        memberDto.birthday = this.birthday
+        memberDto.cellPhone = this.cellPhone
 
         this.userStatus = memberDto.status // status 계산 속성으로 자동 반영됨
     }
