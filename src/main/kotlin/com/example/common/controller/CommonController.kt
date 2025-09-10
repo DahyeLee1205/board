@@ -8,7 +8,5 @@ import org.springframework.web.bind.annotation.RequestMapping
 class CommonController {
 
     @GetMapping("/")
-    fun  boardView() : String{
-        return "forward:/WEB-INF/views/main.jsp";
-    }
+    fun boardView() = "forward:/WEB-INF/views/main.jsp"
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 abstract class BaseTime {
     @CreatedDate
     @Column(updatable = false, name = "create_date")
-    var createDate: LocalDateTime? = null
+    var createDate: LocalDateTime? = LocalDateTime.now()
         protected set
 
     @LastModifiedDate

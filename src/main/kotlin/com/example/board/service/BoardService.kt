@@ -1,7 +1,6 @@
 package com.example.board.service
 
 import com.example.board.dto.BoardDto
-import com.example.board.dto.BoardResponseDto
 import com.example.board.dto.BoardUpdateDto
 import com.example.board.entity.Board
 import com.example.common.entity.BaseResponse
@@ -21,5 +20,5 @@ interface BoardService {
 
     fun updateBoard(boardDto : BoardUpdateDto, id : Long) : ResponseEntity<String>
 
-    fun deleteBoard(id : Long) : ResponseEntity<String> ;
+    fun deleteBoard(id : Long) : ResponseEntity<String>
 }

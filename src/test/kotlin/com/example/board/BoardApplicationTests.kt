@@ -23,27 +23,27 @@ class BoardApplicationTests @Autowired constructor (private val boardRepository 
                 boardContent = "안녕하세요",
                 userNo = "1"
         )
-        var board : Board  = boardRepository.save(saveParams)
+        var board = boardRepository.save(saveParams)
         Assertions.assertEquals(board.boardTitle, "테스트1")
     }
 
     @Test
     fun findAllBoard(){
-        var list : List<Board> = boardRepository.findAll()
+        var list = boardRepository.findAll()
         for(item in list)
             println("item : ${item.id}")
     }
 
         @Test
         fun findBoardById(){
-            var board : Board = boardRepository.findById(1L).orElse(null) ?: throw EntityNotFoundException()
+            var board = boardRepository.findById(1L).orElse(null) ?: throw EntityNotFoundException()
             Assertions.assertEquals(board.boardTitle, "테스트1")
             println("id : ${board.id}" + ", title : ${board.boardTitle}, content : ${board.boardContent}")
         }
 
         @Test
         fun saveMember() {
-            var saveParams : Member = Member.create(
+            var saveParams = Member.create(
                     loginId = "dhlee001",
                     password = "password",
                     userName = "이다혜",
@@ -53,21 +53,21 @@ class BoardApplicationTests @Autowired constructor (private val boardRepository 
                     cellPhone = "01011111111",
                     status = Status.ACTIVE
             )
-            var member : Member = memberRepository.save(saveParams)
+            var member = memberRepository.save(saveParams)
             Assertions.assertEquals(member.loginId, "dhlee001");
             println("memberId : ${member.loginId}")
         }
 
          @Test
          fun findAllMember(){
-             var list : List<Member> = memberRepository.findAll();
+             var list = memberRepository.findAll();
              for(member in list)
                 println("no : ${member.userNo}, name : ${member.userName}")
         }
 
          @Test
          fun findMemberById(){
-             var member : Member  = memberRepository.findById(1L).orElse(null) ?:  throw EntityNotFoundException()
+             var member = memberRepository.findById(1L).orElse(null) ?:  throw EntityNotFoundException()
              Assertions.assertEquals(member.loginId, "dhlee002")
              println("no : ${member.userNo}, name : ${member.userName}")
          }

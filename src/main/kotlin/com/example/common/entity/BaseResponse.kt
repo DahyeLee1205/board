@@ -1,10 +1,10 @@
 package com.example.common.entity
 
 class BaseResponse<T> (
-    var code : String? = null,
-    var status : String? = null,
-    var  message : String?= null,
-    var  data :T ? = null ,
+    var code : String? = "10000",
+    var status : String? = "SUCCESS",
+    var  message : String?= "",
+    var  data :T ? = null,
     var timeStamp : Long ?= System.currentTimeMillis()
 ){
     companion object{

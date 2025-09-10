@@ -9,5 +9,5 @@ interface BoardRepository : JpaRepository<Board, Long> {
 
     fun findTop4ByDelYnOrderByCreateDateDesc(delYn: Int) : MutableList<Board>
     fun findByDelYn(delYn : Int, pageable : Pageable) : Page<Board>
-    fun findByIdAndDelYn(id : Int, delYn : Int) :Board
+    fun findByIdAndDelYn(id: Long, delYn: Int) :Board
 }

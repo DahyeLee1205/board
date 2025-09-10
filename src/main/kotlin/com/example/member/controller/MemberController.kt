@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 class MemberController (private val memberService : MemberService ) {
 
     @GetMapping("/memberJoinPage.do")
-    fun memberJoinView() : String{ return "" }
+    fun memberJoinView() = ""
 
     @GetMapping("/joinMember.do")
     fun joinMember(@RequestBody memberDto : MemberDto ) : ResponseEntity<String> {
@@ -39,7 +39,7 @@ class MemberController (private val memberService : MemberService ) {
 
     @PostMapping("doLogin.do")
     fun doLogin(@RequestBody memberDto : MemberDto ) : ResponseEntity<String> {
-        return memberService.doLogin(memberDto);
+        return memberService.doLogin(memberDto)
     }
 
 }

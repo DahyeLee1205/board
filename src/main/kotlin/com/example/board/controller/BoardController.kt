@@ -15,14 +15,12 @@ import kotlin.collections.MutableList
 @RequestMapping("/board")
 class BoardController(private val boardService : BoardService) {
     @GetMapping("/")
-    fun boardView() : String{
-        return "main";
-    }
+    fun boardView() = "main"
 
     @GetMapping("/getLatestBoardList.do")
     @ResponseBody
     fun getLatestBoardList() : BaseResponse <MutableList<Board>>  {
-        return boardService.getLatestBoards();  // 최신 4개 게시글 반환
+        return boardService.getLatestBoards()  // 최신 4개 게시글 반환
     }
 
     @GetMapping("/getBoardList.do")
@@ -30,29 +28,36 @@ class BoardController(private val boardService : BoardService) {
     fun getBoardList(
             @RequestParam(defaultValue = "0")  pageNo : Int,
             @RequestParam(defaultValue = "4")  pageSize : Int) : BaseResponse<Page<Board>> {
-        return boardService.findAll(pageNo, pageSize);
+       return boardService.findAll(
+           pageNo = pageNo,
+           pageSize = pageSize
+       )
     }
 
     @GetMapping("/getBoardDetail.do")
     @ResponseBody
     fun getBoardDetail(@RequestParam boardNo : Int) : BaseResponse<Board> {
-        return boardService.getBoardDetail(boardNo);
+        return boardService.getBoardDetail(boardNo = boardNo)
     }
 
     @GetMapping("/crateBoard.do")
     fun createBoard(@RequestBody boardDto : BoardDto ) : ResponseEntity<String> {
-        return boardService.saveBoard(boardDto);
+        return boardService.saveBoard(boardDto = boardDto)
     }
 
     @GetMapping("/updateBoard.do/{id}")
     fun updateBoard(@PathVariable  id : Long,
                     @RequestBody boardDto : BoardUpdateDto ) : ResponseEntity<String> {
-        return boardService.updateBoard(boardDto,id);
+        return boardService.updateBoard(
+            boardDto = boardDto,
+            id = id)
     }
 
     @GetMapping("/deleteBoard.do/{id}")
     fun deleteBoard(@PathVariable id : Long ) : ResponseEntity<String> {
-        return boardService.deleteBoard(id);
+        return boardService.deleteBoard(
+            id = id
+        )
     }
 
 }

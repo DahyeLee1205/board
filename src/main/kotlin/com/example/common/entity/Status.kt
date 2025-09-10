@@ -6,7 +6,7 @@ enum class Status(val value: Int) {
 
     companion object{
         fun fromValue (value :Int) :Status {
-            return values().find {it.value == value }
+            return Status.entries.find {it.value == value }
                     ?:throw IllegalArgumentException("Invaild tinyInt value: $value")
         }
     }

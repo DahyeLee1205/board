@@ -6,7 +6,7 @@ enum class Gender(val value :Int) {
 
     companion object {
         fun fromValue(value: Int): Gender {
-            return values().find { it.value == value }
+            return Gender.entries.find { it.value == value }
                     ?: throw IllegalArgumentException("Invaild tinyInt value: $value")
         }
     }
