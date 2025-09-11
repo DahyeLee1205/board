@@ -10,15 +10,15 @@ import org.springframework.http.ResponseEntity
 
 interface BoardService {
 
-    fun getLatestBoards() : BaseResponse<MutableList<Board>>
+    fun getLatestBoards(): BaseResponse<MutableList<Board>>
 
-    fun findAll(pageNo : Int, pageSize : Int) : BaseResponse<Page<Board>>
+    fun findAll(pageNo: Int, pageSize: Int): BaseResponse<Page<Board>>
 
-    fun getBoardDetail(boardNo : Int) : BaseResponse<Board>
+    fun getBoardDetail(boardNo: Int): BaseResponse<Board>
 
-    fun saveBoard(boardDto : BoardDto) : ResponseEntity<String>
+    fun saveBoard(boardDto: BoardDto): ResponseEntity<String>
 
-    fun updateBoard(boardDto : BoardUpdateDto, id : Long) : ResponseEntity<String>
+    fun updateBoard(boardDto: BoardUpdateDto, id: Long): ResponseEntity<String>
 
-    fun deleteBoard(id : Long) : ResponseEntity<String>
+    fun deleteBoard(id: Long): ResponseEntity<String>
 }

@@ -1,4 +1,5 @@
 package com.example.member.service
+
 import com.example.common.entity.Status
 import com.example.member.dto.MemberDto
 
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 public class MemberServiceImpl(private val memberRepository: MemberRepository) : MemberService {
 
-    override fun joinMember(memberDto : MemberDto ) : ResponseEntity<String>  {
+    override fun joinMember(memberDto: MemberDto): ResponseEntity<String> {
         // 엔티티 조회 (중복 아이디 조회)
         val findMember = memberRepository.findByLoginId(
             loginId = memberDto.loginId
@@ -29,20 +30,20 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
         }
 
         val saveParams = Member.create(
-                loginId = memberDto.loginId,
-                password = memberDto.password,
-                userName = memberDto.userName,
-                email = memberDto.email,
-                gen  = Gender.fromValue(memberDto.gender),
-                birthday = memberDto.birthday,
-                cellPhone = memberDto.cellPhone,
-                status = Status.fromValue(memberDto.status)
+            loginId = memberDto.loginId,
+            password = memberDto.password,
+            userName = memberDto.userName,
+            email = memberDto.email,
+            gen = Gender.fromValue(memberDto.gender),
+            birthday = memberDto.birthday,
+            cellPhone = memberDto.cellPhone,
+            status = Status.fromValue(memberDto.status)
         )
         val member = memberRepository.save(saveParams)
         return ResponseEntity.ok("Member saved successfilly! \nloginId : " + member.loginId);
     }
 
-    override fun findMember(memberDto : MemberDto) : ResponseEntity<MutableList<Member>> {
+    override fun findMember(memberDto: MemberDto): ResponseEntity<MutableList<Member>> {
         // 회원 조회
         val findMember = memberRepository.findByLoginId(
             loginId = memberDto.loginId
@@ -53,7 +54,7 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
             return ResponseEntity.ok(findMember)
     }
 
-    override fun updateMember(memberDto : MemberDto) : ResponseEntity<String>  {
+    override fun updateMember(memberDto: MemberDto): ResponseEntity<String> {
         // 회원 정보 업데이트
         val findMember = memberRepository.findByLoginId(
             loginId = memberDto.loginId
@@ -67,7 +68,7 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
         return ResponseEntity.ok("Member saved successfilly! \nloginId : " + member.loginId)
     }
 
-    override fun deleteMember(memberDto : MemberDto) : ResponseEntity<String>  {
+    override fun deleteMember(memberDto: MemberDto): ResponseEntity<String> {
         // 회원 탈퇴
         val findMember = memberRepository.findByLoginId(
             loginId = memberDto.loginId
@@ -79,23 +80,24 @@ public class MemberServiceImpl(private val memberRepository: MemberRepository) :
         val member = findMember[0]
         member.updateMember(memberDto)
 
-        return ResponseEntity.ok("Member deleted successfilly! \nloginId : " + member.loginId);
+        return ResponseEntity.ok("Member deleted successfilly! \nloginId : " + member.loginId)
     }
 
-    override fun doLogin(memberDto : MemberDto) : ResponseEntity<String>  {
+    override fun doLogin(memberDto: MemberDto): ResponseEntity<String> {
         val members = memberRepository.findByLoginId(
             loginId = memberDto.loginId
         )
 
-        members[0]?.let {member ->
+        members[0]?.let { member ->
             val passWd = memberDto.password
             val memberPassWd = member.password
 
             val passwordEncoder = BCryptPasswordEncoder()
 
-            val isLogin : Boolean = passwordEncoder.matches(
-                passWd, memberPassWd)
-            if(isLogin){
+            val isLogin: Boolean = passwordEncoder.matches(
+                passWd, memberPassWd
+            )
+            if (isLogin) {
                 // 로그인 세션 추가
             }
         }

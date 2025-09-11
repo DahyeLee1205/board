@@ -10,21 +10,21 @@ class SsoLogin protected constructor(
 
     @Id
     @Column(name = "sso_login_id")
-    var ssoLoginId : Int,
+    var ssoLoginId: Int,
 
     @ManyToOne(cascade = arrayOf(CascadeType.REMOVE))
     @JoinColumn(name = "user_no", referencedColumnName = "user_no")
-    var member : Member,
+    var member: Member,
 
     @Column(name = "social_code")
-    var socialCode : Int,
+    var socialCode: Int,
 
     @Column(name = "external_id")
-    var externalId : String,
+    var externalId: String,
 
-    @Column (name = "access_token")
-    var accessToken : String
+    @Column(name = "access_token")
+    var accessToken: String
 
-) :  BaseTime() {
+) : BaseTime() {
 
 }

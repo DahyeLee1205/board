@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface BoardRepository : JpaRepository<Board, Long> {
 
-    fun findTop4ByDelYnOrderByCreateDateDesc(delYn: Int) : MutableList<Board>
-    fun findByDelYn(delYn : Int, pageable : Pageable) : Page<Board>
-    fun findByIdAndDelYn(id: Long, delYn: Int) :Board
+    fun findTop4ByDelYnOrderByCreateDateDesc(delYn: Int): MutableList<Board>
+    fun findByDelYn(delYn: Int, pageable: Pageable): Page<Board>
+    fun findByIdAndDelYn(id: Long, delYn: Int): Board
 }

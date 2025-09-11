@@ -9,32 +9,32 @@ import jakarta.persistence.*
 @Table(name = "member")
 class Member protected constructor(
 
-        @Column(name = "login_id")
-        var loginId: String,     // 로그인 ID
+    @Column(name = "login_id")
+    var loginId: String,     // 로그인 ID
 
-        @Column(name = "user_name")
-        var userName: String,    // 이름
+    @Column(name = "user_name")
+    var userName: String,    // 이름
 
-        @Column(name = "password")
-        var password: String,    // 비밀번호
+    @Column(name = "password")
+    var password: String,    // 비밀번호
 
-        @Column(name = "email")
-        var email: String,       // 이메일
+    @Column(name = "email")
+    var email: String,       // 이메일
 
-        @Column(name = "gender")
-        var gender: Int,         // 성별
+    @Column(name = "gender")
+    var gender: Int,         // 성별
 
-        @Transient
-        var gen: Gender,         // 성별(Enum)
+    @Transient
+    var gen: Gender,         // 성별(Enum)
 
-        @Column(name = "birthday")
-        var birthday: String,    // 생년월일
+    @Column(name = "birthday")
+    var birthday: String,    // 생년월일
 
-        @Column(name = "cell_phone")
-        var cellPhone: String,
+    @Column(name = "cell_phone")
+    var cellPhone: String,
 
-        @Column(name = "user_status")
-        var userStatus: Int      // DB 컬럼 (0/1)
+    @Column(name = "user_status")
+    var userStatus: Int      // DB 컬럼 (0/1)
 
 ) : BaseTime() {
 
@@ -62,25 +62,25 @@ class Member protected constructor(
 
     companion object {
         fun create(
-                loginId: String,
-                password: String,
-                userName: String,
-                email: String,
-                gen: Gender,
-                birthday: String,
-                cellPhone: String,
-                status: Status
+            loginId: String,
+            password: String,
+            userName: String,
+            email: String,
+            gen: Gender,
+            birthday: String,
+            cellPhone: String,
+            status: Status
         ): Member {
             return Member(
-                    loginId = loginId,
-                    password = password,
-                    userName = userName,
-                    email = email,
-                    gender = gen.value,
-                    gen = gen,
-                    birthday = birthday,
-                    cellPhone = cellPhone,
-                    userStatus = status.value
+                loginId = loginId,
+                password = password,
+                userName = userName,
+                email = email,
+                gender = gen.value,
+                gen = gen,
+                birthday = birthday,
+                cellPhone = cellPhone,
+                userStatus = status.value
             )
         }
     }

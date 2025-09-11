@@ -13,10 +13,10 @@ import org.springframework.security.web.SecurityFilterChain
 class SecurityConfig {
 
     @Bean
-    fun securityFilterChain(http: HttpSecurity) : SecurityFilterChain {
+    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .csrf{ it.disable() }
-             .authorizeHttpRequests {
+            .csrf { it.disable() }
+            .authorizeHttpRequests {
                 it.requestMatchers("/login", "/register").permitAll()
                     .anyRequest().authenticated()
             }  // 그 외 모든 요청은 인증 필요
@@ -41,7 +41,7 @@ class SecurityConfig {
     }
 
     @Bean
-    fun passwordEncoder() : PasswordEncoder{
+    fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
     }
 }
